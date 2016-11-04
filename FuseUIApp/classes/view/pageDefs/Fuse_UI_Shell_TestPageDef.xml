@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.63.28" id="Fuse_UI_Shell_TestPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="opportunitiesTF1"
+              taskFlowId="/WEB-INF/sample_taskflows/opportunitiesTF.xml#opportunitiesTF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="leadsTF1" taskFlowId="/WEB-INF/sample_taskflows/leadsTF.xml#leadsTF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="customerTF1"
+              taskFlowId="/WEB-INF/sample_taskflows/customerTF.xml#customerTF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="COASearchTF1"
+              taskFlowId="/WEB-INF/COATaskflows/COASearchTF.xml#COASearchTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+  <eventMap xmlns="http://xmlns.oracle.com/adfm/contextualEvent">
+    <event name="findCOAValuesEvent">
+      <producer region="COASearchTF1.COASearchPGPageDef.COAFindTF1.COAFindPGPageDef.findCOAValues">
+        <consumer region="COASearchTF1" handler="COASearchPGPageDef.Execute"/>
+      </producer>
+    </event>
+  </eventMap>
+</pageDefinition>
