@@ -6,7 +6,7 @@
   Name="COASourceSystemLOVVO"
   Version="11.1.1.65.57"
   InheritPersonalization="true"
-  OrderBy='"SYSTEM_NAME"'
+  OrderBy='"SOURCE_SYSTEM" DESC'
   BindingStyle="OracleName"
   CustomQuery="true"
   PageIterMode="Full"
@@ -21,18 +21,19 @@
     </SchemaBasedProperties>
   </Properties>
   <SQLQuery>
-    <![CDATA[select DISTINCT SYSTEM_NAME FROM COA_SEGMENT_DEFINITIONS
+    <![CDATA[select DISTINCT SYSTEM_NAME SOURCE_SYSTEM FROM COA_SEGMENT_DEFINITIONS
 WHERE SOURCE_FLAG = 'Y'
 AND ENABLED_FLAG = 'Y']]>
   </SQLQuery>
   <ViewAttribute
-    Name="SystemName"
+    Name="SourceSystem"
+    IsUpdateable="false"
     IsPersistent="false"
     PrecisionRule="true"
     Type="java.lang.String"
     ColumnType="CHAR"
-    AliasName="SYSTEM_NAME"
-    Expression="SYSTEM_NAME"
+    AliasName="SOURCE_SYSTEM"
+    Expression="SOURCE_SYSTEM"
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="200"/>

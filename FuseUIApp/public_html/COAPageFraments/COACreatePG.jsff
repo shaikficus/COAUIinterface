@@ -20,6 +20,7 @@
     <f:facet name="body">
       <af:panelGroupLayout id="pgl2" layout="vertical"
                            styleClass="AFStecthWidth">
+        <af:messages id="m1" inline="true" styleClass="coa-saveandclose"/>
         <af:panelBox text="Rule" id="pb1" showDisclosure="false">
           <f:facet name="toolbar"/>
           <af:panelFormLayout id="pfl2" maxColumns="1" rows="2"
@@ -44,7 +45,8 @@
         <af:panelBox text="Systems and Segments" id="pb2">
           <f:facet name="toolbar"/>
           <af:panelFormLayout id="pfl3" rows="2" maxColumns="2"
-                              labelWidth="200px" partialTriggers="soc1">
+                              labelWidth="150px" partialTriggers="soc1"
+                              fieldWidth="300px">
             <f:facet name="footer"/>
             <af:inputText value="#{bindings.SourceSystem.inputValue}"
                           label="Source System"
@@ -68,7 +70,7 @@
                           required="#{bindings.Description.hints.mandatory}"
                           maximumLength="#{bindings.Description.hints.precision}"
                           shortDesc="#{bindings.Description.hints.tooltip}"
-                          id="it12" rows="1">
+                          id="it12" rows="1" columns="40">
               <f:validator binding="#{bindings.Description.validator}"/>
             </af:inputText>
             <af:inputText value="#{bindings.TargetSystem.inputValue}"
@@ -99,7 +101,7 @@
                           required="#{bindings.ValueId.hints.mandatory}"
                           maximumLength="#{bindings.ValueId.hints.precision}"
                           shortDesc="#{bindings.ValueId.hints.tooltip}" id="it3"
-                          rendered="true">
+                          rendered="false">
               <f:validator binding="#{bindings.ValueId.validator}"/>
               <af:convertNumber groupingUsed="false"
                                 pattern="#{bindings.ValueId.format}"/>
@@ -120,11 +122,12 @@
               <f:validator binding="#{bindings.StartDate.validator}"/>
               <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
             </af:inputDate>
-            <af:selectBooleanCheckbox value="#{bindings.EnabledFlag.inputValue}"
+            <af:selectBooleanCheckbox
                                       label="Enable"
                                       required="#{bindings.EnabledFlag.hints.mandatory}"
                                       shortDesc="#{bindings.EnabledFlag.hints.tooltip}"
-                                      id="it1" selected="true">
+                                      id="it1"
+                                      value="#{bindings.EnabledFlag1.inputValue}">
               <f:validator binding="#{bindings.EnabledFlag.validator}"/>
             </af:selectBooleanCheckbox>
             <af:inputText value="#{bindings.TargetValue.inputValue}"

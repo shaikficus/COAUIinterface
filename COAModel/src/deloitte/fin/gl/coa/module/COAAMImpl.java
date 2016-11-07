@@ -164,4 +164,12 @@ public class COAAMImpl extends ApplicationModuleImpl implements COAAM {
     public COASearchVOImpl getCOASearchVO1() {
         return (COASearchVOImpl)findViewObject("COASearchVO1");
     }
+
+    /**
+     * Container's getter for COAFindFieldLOVVO1.
+     * @return COAFindFieldLOVVO1
+     */
+    public ViewObjectImpl getCOAFindFieldLOVVO1() {
+        return (ViewObjectImpl)findViewObject("COAFindFieldLOVVO1");
+    }
 }

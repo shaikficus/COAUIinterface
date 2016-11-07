@@ -87,8 +87,8 @@
     Name="RuleIdLOV"
     ListVOName="COARulesLOV1"
     ListRangeSize="-1"
-    NullValueFlag="none"
-    NullValueId="RuleIdLOV_LOVUIHints_NullValueId"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
     MRUCount="0">
     <AttrArray Name="AttrNames">
       <Item Value="RuleId"/>

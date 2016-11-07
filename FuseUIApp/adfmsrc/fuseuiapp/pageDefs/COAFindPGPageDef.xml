@@ -5,11 +5,9 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="COASegmentDefinitionsVO1" RangeSize="25"
-              DataControl="COAAMDataControl"
-              id="COASegmentDefinitionsVO1Iterator"/>
-    <iterator Binds="COAMappingRulesVO1" RangeSize="25"
-              DataControl="COAAMDataControl" id="COAMappingRulesVO1Iterator"/>
+        <iterator Binds="COAFindFieldLOVVO1" RangeSize="25"
+              DataControl="COAAMDataControl" id="COAFindFieldLOVVO1Iterator"/>
+
   </executables>
   <bindings>
     <methodAction id="findCOAValues" RequiresUpdateModel="true"
@@ -17,20 +15,20 @@
                   IsViewObjectMethod="false" DataControl="COAAMDataControl"
                   InstanceName="COAAMDataControl.dataProvider">
       <NamedData NDName="sourceSystem"
-                 NDValue="#{pageFlowScope.COAFindBean.findSourceSystemString}"
+                 NDValue="#{bindings.SourceSystem.inputValue}"
                  NDType="java.lang.String"/>
       <NamedData NDName="targetSystem"
-                 NDValue="#{pageFlowScope.COAFindBean.findTargetSystemString}"
-                 NDType="java.lang.String"/>
-      <NamedData NDName="mappingRule"
-                 NDValue="#{pageFlowScope.COAFindBean.findMappingRuleString}"
-                 NDType="java.lang.String"/>
+                 NDType="java.lang.String"
+                 NDValue="#{bindings.TargetSystem.inputValue}"/>
+      <NamedData NDName="mappingRule "
+                 NDType="java.lang.String"
+                 NDValue="#{bindings.RuleName.inputValue}"/>
       <NamedData NDName="sourceSegment"
-                 NDValue="#{pageFlowScope.COAFindBean.findSourceSegmentString}"
-                 NDType="java.lang.String"/>
+                 NDType="java.lang.String"
+                 NDValue="#{bindings.SourceSegment.inputValue}"/>
       <NamedData NDName="targetSegemnt"
-                 NDValue="#{pageFlowScope.COAFindBean.findTargetSegmentString}"
-                 NDType="java.lang.String"/>
+                 NDType="java.lang.String"
+                 NDValue="#{bindings.TargetSegment.inputValue}"/>
       <NamedData NDName="sourceValue"
                  NDValue="#{pageFlowScope.COAFindBean.findSourceSegmentValueString}"
                  NDType="java.lang.String"/>
@@ -41,11 +39,19 @@
         <event name="findCOAValuesEvent"/>
       </events>
     </methodAction>
-    <list IterBinding="COASegmentDefinitionsVO1Iterator" StaticList="false"
-          Uses="LOV_SystemName" id="SystemName" DTSupportsMRU="true"
-          SelectItemValueMode="ListObject"/>
-    <list IterBinding="COAMappingRulesVO1Iterator" StaticList="false"
+    <list IterBinding="COAFindFieldLOVVO1Iterator" StaticList="false"
+          Uses="LOV_SourceSystem" id="SourceSystem" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject" NullValueFlag="start"/>
+    <list IterBinding="COAFindFieldLOVVO1Iterator" StaticList="false"
           Uses="LOV_TargetSystem" id="TargetSystem" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <listOfValues StaticList="false" IterBinding="COAFindFieldLOVVO1Iterator"
+                  Uses="LOV_RuleName" id="RuleName"/>
+    <list IterBinding="COAFindFieldLOVVO1Iterator" StaticList="false"
+          Uses="LOV_SourceSegment" id="SourceSegment" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="COAFindFieldLOVVO1Iterator" StaticList="false"
+          Uses="LOV_TargetSegment" id="TargetSegment" DTSupportsMRU="true"
           SelectItemValueMode="ListObject"/>
   </bindings>
 </pageDefinition>

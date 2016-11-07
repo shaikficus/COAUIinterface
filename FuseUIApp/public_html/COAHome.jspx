@@ -8,6 +8,8 @@
     <af:document id="d1" title="Fuse" styleClass="application-container round">
       <f:facet name="metaContainer">
         <af:resource type="javascript" source="/faces/skins/js/fuse-ui.js"/>
+        <af:resource type="javascript"
+                     source="/faces/skins/js/jquery-3.1.1.min.js"/>
         <f:verbatim>
           <meta name="apple-mobile-web-app-capable" content="yes"/>
           <meta name="apple-mobile-web-app-status-bar-style" content="black"/>

@@ -3,10 +3,9 @@
 <!---->
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
-  Name="COAMappingRuleLOVVO"
+  Name="COASegmentLOVVO"
   Version="11.1.1.65.57"
   InheritPersonalization="true"
-  OrderBy='"RULE_NAME"'
   BindingStyle="OracleName"
   CustomQuery="true"
   PageIterMode="Full"
@@ -17,19 +16,52 @@
   <Properties>
     <SchemaBasedProperties>
       <LABEL
-        ResId="deloitte.fin.gl.coa.view.lov.COAMappingRuleLOVVO_LABEL"/>
+        ResId="deloitte.fin.gl.coa.view.lov.COASegmentLOVVO_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
   <Variable
-    Name="P_Ssystem"
-    Kind="viewcriteria"
-    Type="java.lang.String"/>
-  <Variable
-    Name="p_Tsystem"
+    Name="p_RuleName"
     Kind="viewcriteria"
     Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[select RULE_NAME,SOURCE_SYSTEM,TARGET_SYSTEM from COA_MAPPING_RULES]]>
+    <![CDATA[select   DISTINCT mrule.rule_name,ss.source_segment, ts.target_segment
+from
+coa_segment_values val,
+coa_mapping_rules mrule,
+coa_segment_mappings smap,
+coa_segment_definitions sdef,
+coa_segment_definitions tdef,
+(SELECT src.rule_id,
+       LISTAGG(src.source_segment, '.') WITHIN GROUP (ORDER BY src.mapping_id) source_segment
+       from 
+(select seg.mapping_id, sdef.segment_name source_segment, rule_id 
+from coa_segment_definitions  sdef
+,coa_segment_mappings seg
+where 1=1
+and seg.source_segment_id = sdef.segment_id
+and seg.source_segment_id <> -1)  src
+group by src.rule_id) ss,
+(SELECT trgt.rule_id,
+       LISTAGG(trgt.target_segment, '.') WITHIN GROUP (ORDER BY trgt.mapping_id) target_segment
+       from 
+(select seg.mapping_id, sdef.segment_name target_segment, rule_id
+from coa_segment_definitions  sdef
+,coa_segment_mappings seg
+where 1=1
+and seg.target_segment_id = sdef.segment_id
+and seg.target_segment_id <> -1)  trgt
+group by trgt.rule_id) ts
+where 1=1
+and val.rule_id = mrule.rule_id
+and mrule.rule_id = smap.rule_id
+and sdef.segment_id= smap.source_segment_id
+and tdef.segment_id= smap.target_segment_id
+and sdef.source_flag = 'Y'
+and tdef.target_flag = 'Y'
+and smap.source_segment_id  <> -1
+and smap.target_segment_id <> -1
+and ss.rule_id = val.rule_id
+and ts.rule_id = val.rule_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="RuleName"
@@ -46,38 +78,38 @@
     </DesignTime>
   </ViewAttribute>
   <ViewAttribute
-    Name="SourceSystem"
+    Name="SourceSegment"
     IsUpdateable="false"
     IsPersistent="false"
     PrecisionRule="true"
-    Precision="15"
+    Precision="20"
     Type="java.lang.String"
     ColumnType="VARCHAR2"
-    AliasName="SOURCE_SYSTEM"
-    Expression="SOURCE_SYSTEM"
+    AliasName="SOURCE_SEGMENT"
+    Expression="SOURCE_SEGMENT"
     SQLType="VARCHAR">
     <DesignTime>
-      <Attr Name="_DisplaySize" Value="200"/>
+      <Attr Name="_DisplaySize" Value="4000"/>
     </DesignTime>
   </ViewAttribute>
   <ViewAttribute
-    Name="TargetSystem"
+    Name="TargetSegment"
     IsUpdateable="false"
     IsPersistent="false"
     PrecisionRule="true"
-    Precision="15"
+    Precision="20"
     Type="java.lang.String"
     ColumnType="VARCHAR2"
-    AliasName="TARGET_SYSTEM"
-    Expression="TARGET_SYSTEM"
+    AliasName="TARGET_SEGMENT"
+    Expression="TARGET_SEGMENT"
     SQLType="VARCHAR">
     <DesignTime>
-      <Attr Name="_DisplaySize" Value="200"/>
+      <Attr Name="_DisplaySize" Value="4000"/>
     </DesignTime>
   </ViewAttribute>
   <ViewCriteria
-    Name="COAMappingRuleLOVVOCriteria"
-    ViewObjectName="deloitte.fin.gl.coa.view.lov.COAMappingRuleLOVVO"
+    Name="COASegmentLOVVOCriteria"
+    ViewObjectName="deloitte.fin.gl.coa.view.lov.COASegmentLOVVO"
     Conjunction="AND">
     <Properties>
       <CustomProperties>
@@ -88,10 +120,10 @@
           Name="autoExecute"
           Value="false"/>
         <Property
-          Name="showInList"
+          Name="allowConjunctionOverride"
           Value="true"/>
         <Property
-          Name="allowConjunctionOverride"
+          Name="showInList"
           Value="true"/>
         <Property
           Name="mode"
@@ -99,22 +131,14 @@
       </CustomProperties>
     </Properties>
     <ViewCriteriaRow
-      Name="vcrow17"
+      Name="vcrow39"
       UpperColumns="1">
       <ViewCriteriaItem
-        Name="SourceSystem"
-        ViewAttribute="SourceSystem"
+        Name="COASegmentLOVVOCriteria_vcrow39_RuleName"
+        ViewAttribute="RuleName"
         Operator="="
         Conjunction="AND"
-        Value=":P_Ssystem"
-        IsBindVarValue="true"
-        Required="Optional"/>
-      <ViewCriteriaItem
-        Name="TargetSystem"
-        ViewAttribute="TargetSystem"
-        Operator="="
-        Conjunction="AND"
-        Value=":p_Tsystem"
+        Value=":p_RuleName"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>

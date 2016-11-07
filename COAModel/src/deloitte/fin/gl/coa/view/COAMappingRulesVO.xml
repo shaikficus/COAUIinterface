@@ -43,8 +43,41 @@
     RowLevelBinds="true"/>
   <ViewAccessor
     Name="COAMappingRuleLOVVO1"
-    ViewObjectName="deloitte.fin.gl.coa.view.lov.COAMappingRuleLOVVO"
+    ViewObjectName="deloitte.fin.gl.coa.view.lov.COAMappingRuleLOVVO">
+    <ViewCriteriaUsage
+      Name="COAMappingRuleLOVVOCriteria"
+      FullName="deloitte.fin.gl.coa.view.lov.COAMappingRuleLOVVO.COAMappingRuleLOVVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="P_Ssystem">
+        <TransientExpression><![CDATA[SourceSystem]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="p_Tsystem">
+        <TransientExpression><![CDATA[TargetSystem]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="COASourceSystemLOVVO1"
+    ViewObjectName="deloitte.fin.gl.coa.view.lov.COASourceSystemLOVVO"
     RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_SourceSystem"
+    ListVOName="COASourceSystemLOVVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SourceSystem"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SourceSystem"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SourceSystem"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <ListBinding
     Name="LOV_TargetSystem"
     ListVOName="COATargetSystemLOVVO1"
@@ -56,10 +89,30 @@
       <Item Value="TargetSystem"/>
     </AttrArray>
     <AttrArray Name="ListAttrNames">
-      <Item Value="SystemName"/>
+      <Item Value="TargetSystem"/>
     </AttrArray>
     <AttrArray Name="ListDisplayAttrNames">
-      <Item Value="SystemName"/>
+      <Item Value="TargetSystem"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_RuleName"
+    ListVOName="COAMappingRuleLOVVO1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_RuleName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RuleName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="RuleName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RuleName"/>
+      <Item Value="SourceSystem"/>
+      <Item Value="TargetSystem"/>
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
@@ -78,7 +131,15 @@
     PrecisionRule="true"
     EntityAttrName="RuleName"
     EntityUsage="COAMappingRulesEO"
-    AliasName="RULE_NAME"/>
+    AliasName="RULE_NAME"
+    LOVName="LOV_RuleName">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="Description"
     PrecisionRule="true"
@@ -90,7 +151,15 @@
     PrecisionRule="true"
     EntityAttrName="SourceSystem"
     EntityUsage="COAMappingRulesEO"
-    AliasName="SOURCE_SYSTEM"/>
+    AliasName="SOURCE_SYSTEM"
+    LOVName="LOV_SourceSystem">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="TargetSystem"
     PrecisionRule="true"
