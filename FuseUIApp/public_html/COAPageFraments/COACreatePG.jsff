@@ -5,22 +5,24 @@
   <af:pageTemplate viewId="/WEB-INF/_Templates/fuse-popup.jspx" id="pt1">
     <f:facet name="header-start">
       <af:panelGroupLayout id="pgl5">
-        <af:outputText value="Create COA "
+        <af:outputText value="Create Segment Values"
                        id="ot1" styleClass="page-title"/>
       </af:panelGroupLayout>
     </f:facet>
     <f:facet name="header-end">
       <af:panelGroupLayout id="pgl1" layout="horizontal">
-        <af:commandButton text="Save and Close" id="cb1"
+        <af:commandButton text="Save" id="cb1"
                           actionListener="#{backingBeanScope.UtilLibraryBean.saveAndClose}"/>
-        <af:commandButton text="Cancel" id="cb3" immediate="true"
+        <af:commandButton text="Close" id="cb3" immediate="true"
                           actionListener="#{backingBeanScope.UtilLibraryBean.cancelButton}"/>
       </af:panelGroupLayout>
     </f:facet>
     <f:facet name="body">
       <af:panelGroupLayout id="pgl2" layout="vertical"
                            styleClass="AFStecthWidth">
-        <af:messages id="m1" inline="true" styleClass="coa-saveandclose"/>
+        <af:panelGroupLayout id="pgl3" layout="vertical" halign="center">
+          <af:messages id="m1" inline="true" styleClass="coa-saveandclose"/>
+        </af:panelGroupLayout>
         <af:panelBox text="Rule" id="pb1" showDisclosure="false">
           <f:facet name="toolbar"/>
           <af:panelFormLayout id="pfl2" maxColumns="1" rows="2"
@@ -122,12 +124,18 @@
               <f:validator binding="#{bindings.StartDate.validator}"/>
               <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
             </af:inputDate>
+            <af:selectBooleanCheckbox value="#{bindings.EnableFlagBoolean.inputValue}"
+                                      label="Enable"
+                                      shortDesc="#{bindings.EnableFlagBoolean.hints.tooltip}"
+                                      id="sbc1" selected="true"
+                                      autoSubmit="true"/>
             <af:selectBooleanCheckbox
                                       label="Enable"
                                       required="#{bindings.EnabledFlag.hints.mandatory}"
                                       shortDesc="#{bindings.EnabledFlag.hints.tooltip}"
                                       id="it1"
-                                      value="#{bindings.EnabledFlag1.inputValue}">
+                                      value="#{bindings.EnabledFlag1.inputValue}"
+                                      rendered="false">
               <f:validator binding="#{bindings.EnabledFlag.validator}"/>
             </af:selectBooleanCheckbox>
             <af:inputText value="#{bindings.TargetValue.inputValue}"

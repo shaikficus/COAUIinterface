@@ -4,6 +4,12 @@ import deloitte.fin.gl.coa.module.common.COAAM;
 
 import deloitte.fin.gl.coa.view.COASearchVOImpl;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+
+import java.sql.Types;
+
+import oracle.jbo.JboException;
 import oracle.jbo.ViewCriteria;
 import oracle.jbo.server.ApplicationModuleImpl;
 import oracle.jbo.server.ViewLinkImpl;
@@ -105,8 +111,8 @@ public class COAAMImpl extends ApplicationModuleImpl implements COAAM {
                 COAValuesVO.setNamedWhereClauseParam("p_SourceSystem", sourceSystem);
                 COAValuesVO.setNamedWhereClauseParam("p_TargetSystem", targetSystem);
                 COAValuesVO.setNamedWhereClauseParam("p_MappingRule", mappingRule);
-                //COAValuesVO.setNamedWhereClauseParam("p_SourceSegment", sourceSegment);
-                //COAValuesVO.setNamedWhereClauseParam("p_TargetSegment", targetSegemnt);
+                COAValuesVO.setNamedWhereClauseParam("p_SourceSegment", sourceSegment);
+                COAValuesVO.setNamedWhereClauseParam("p_TargetSegment", targetSegemnt);
                 COAValuesVO.setNamedWhereClauseParam("p_SourceSegmentValue", sourceValue);
                 COAValuesVO.setNamedWhereClauseParam("p_TargetSegmentValue", targetValue);
         //            ciaVO.executeQuery();
@@ -172,4 +178,42 @@ public class COAAMImpl extends ApplicationModuleImpl implements COAAM {
     public ViewObjectImpl getCOAFindFieldLOVVO1() {
         return (ViewObjectImpl)findViewObject("COAFindFieldLOVVO1");
     }
+    protected Object invokeStoredFunction(int sqlReturnType, String stmt, Object[] bindVars) {
+            CallableStatement cst = null;
+            try {
+                //Creating sql statement
+                cst = this.getDBTransaction().createCallableStatement("begin ? := " + stmt + ";end;", 0);
+                //Register dataType for return value
+                cst.registerOutParameter(1, sqlReturnType);
+                //Pass input parameters value
+                if (bindVars != null) {
+                    for (int z = 0; z < bindVars.length; z++) {
+                        cst.setObject(z + 2, bindVars[z]);
+                    }
+                }
+                cst.executeUpdate();
+                //Finally get returned value
+                return cst.getObject(1);
+            } catch (SQLException e) {
+                throw new JboException(e.getMessage());
+            } finally {
+                if (cst != null) {
+                    try {
+                        cst.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    
+    public String getCOASegments(String sourceSystem, String targetSystem, String sourceString){
+        String returnValue = "Return Value is null";
+        Object outString = invokeStoredFunction(Types.VARCHAR, "GET_TARGET_COA_STRING(?,?,?)", new Object[]{sourceSystem,targetSystem,sourceString});
+        if (outString!= null){
+                returnValue=outString.toString();
+            }
+        return returnValue;
+        }
+    /*END*/
 }

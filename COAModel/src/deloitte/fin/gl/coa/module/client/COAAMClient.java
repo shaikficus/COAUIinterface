@@ -24,4 +24,11 @@ public class COAAMClient extends ApplicationModuleImpl implements COAAM {
             this.riInvokeExportedMethod(this,"findCOAValues",new String [] {"java.lang.String","java.lang.String","java.lang.String","java.lang.String","java.lang.String","java.lang.String","java.lang.String"},new Object[] {sourceSystem, targetSystem, mappingRule, sourceSegment, targetSegemnt, sourceValue, targetValue});
         return;
     }
+
+    public String getCOASegments(String sourceSystem, String targetSystem,
+                                 String sourceString) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"getCOASegments",new String [] {"java.lang.String","java.lang.String","java.lang.String"},new Object[] {sourceSystem, targetSystem, sourceString});
+        return (String)_ret;
+    }
 }

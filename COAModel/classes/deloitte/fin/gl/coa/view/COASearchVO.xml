@@ -68,10 +68,6 @@
     Kind="viewcriteria"
     Type="java.lang.String"/>
   <ViewAccessor
-    Name="COASegmentLOV1"
-    ViewObjectName="deloitte.fin.gl.coa.view.lov.COASegmentLOV"
-    RowLevelBinds="true"/>
-  <ViewAccessor
     Name="COARulesLOV1"
     ViewObjectName="deloitte.fin.gl.coa.view.lov.COARulesLOV"
     RowLevelBinds="true"/>
@@ -243,6 +239,16 @@
     EntityAttrName="TargetSegment"
     EntityUsage="COASegmentsViewMappingEO"
     AliasName="TARGET_SEGMENT"/>
+  <ViewAttribute
+    Name="EnableFlagBoolean"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="BIT"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    Passivate="true"/>
   <ViewCriteria
     Name="COASearchVOCriteria"
     ViewObjectName="deloitte.fin.gl.coa.view.COASearchVO"
@@ -312,7 +318,7 @@
       <ViewCriteriaItem
         Name="SourceSegment"
         ViewAttribute="SourceSegment"
-        Operator="CONTAINS"
+        Operator="="
         Conjunction="AND"
         Value=":p_SourceSegment"
         IsBindVarValue="true"
@@ -320,9 +326,9 @@
       <ViewCriteriaItem
         Name="TargetSegment"
         ViewAttribute="TargetSegment"
-        Operator="CONTAINS"
+        Operator="="
         Conjunction="AND"
-        Value=":p_SourceSegment"
+        Value=":p_TargetSegment"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>

@@ -101,5 +101,15 @@
         <Item Value="N"/>
       </ValueList>
     </button>
+    <button IterBinding="COASearchVO1Iterator" id="EnableFlagBoolean"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="EnableFlagBoolean"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
   </bindings>
 </pageDefinition>

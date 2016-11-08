@@ -5,19 +5,23 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <taskFlow id="opportunitiesTF1"
-              taskFlowId="/WEB-INF/sample_taskflows/opportunitiesTF.xml#opportunitiesTF"
-              activation="deferred"
-              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
-    <taskFlow id="leadsTF1" taskFlowId="/WEB-INF/sample_taskflows/leadsTF.xml#leadsTF"
-              activation="deferred"
-              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
-    <taskFlow id="customerTF1"
-              taskFlowId="/WEB-INF/sample_taskflows/customerTF.xml#customerTF"
-              activation="deferred"
-              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="COASearchTF1"
               taskFlowId="/WEB-INF/COATaskflows/COASearchTF.xml#COASearchTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="COATargetSegmentTF1"
+              taskFlowId="/WEB-INF/COATaskflows/COATargetSegmentTF.xml#COATargetSegmentTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="COASegmentDefinitionsTF1"
+              taskFlowId="/WEB-INF/COATaskflows/COASegmentDefinitionsTF.xml#COASegmentDefinitionsTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="COAMappingRulesTF1"
+              taskFlowId="/WEB-INF/COATaskflows/COAMappingRulesTF.xml#COAMappingRulesTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="COAStringMappingsTF1"
+              taskFlowId="/WEB-INF/COATaskflows/COAStringMappingsTF.xml#COAStringMappingsTF"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="COASpreedSheetLoaderTF1"
+              taskFlowId="/WEB-INF/COATaskflows/COASpreedSheetLoaderTF.xml#COASpreedSheetLoaderTF"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings/>

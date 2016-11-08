@@ -6,7 +6,7 @@
                    id="pt1">
     <f:facet name="header-start">
       <af:panelGroupLayout id="panelGroupLayout1">
-        <af:outputText value="Maaping Result"
+        <af:outputText value="Segment Values"
                        id="ot2" styleClass="page-title"/>
       </af:panelGroupLayout>
     </f:facet>
@@ -37,7 +37,9 @@
             </f:facet>
             <f:facet name="end">
               <af:commandButton text="Delete" id="cb2"
-                                actionListener="#{bindings.Delete.execute}"/>
+                                action="#{backingBeanScope.COADeleteListnerBean.cb2_action}">
+                <af:showPopupBehavior popupId="p2" triggerType="click"/>
+              </af:commandButton>
             </f:facet>
             <f:facet name="top"/>
           </af:panelStretchLayout>
@@ -54,7 +56,7 @@
                     rowSelection="single" id="t1" styleClass="AFStrecthWidth"
                     columnStretching="multiple" contentDelivery="immediate"
                     autoHeightRows="10" width="100%" columnBandingInterval="0"
-                    partialTriggers="::cb2 ::cb3">
+                    partialTriggers="::cb3 ::cb2 ::p2 ::pw2 ::cb4 ::cb5">
             <af:column sortProperty="#{bindings.COASearchVO1.hints.SourceSystem.name}"
                        filterable="true" sortable="true"
                        headerText="Source System" id="c3" width="10%">
@@ -64,7 +66,7 @@
                             columns="#{bindings.COASearchVO1.hints.SourceSystem.displayWidth}"
                             maximumLength="#{bindings.COASearchVO1.hints.SourceSystem.precision}"
                             shortDesc="#{bindings.COASearchVO1.hints.SourceSystem.tooltip}"
-                            id="it5">
+                            id="it5" inlineStyle="font-size:8.0px;">
                 <f:validator binding="#{row.bindings.SourceSystem.validator}"/>
               </af:inputText>
             </af:column>
@@ -176,16 +178,33 @@
     <f:facet name="footer-end"/>
     <f:facet name="footer-start"/>
     <f:facet name="hidden">
-      <af:popup id="p1" contentDelivery="lazyUncached"
-                childCreation="deferred"
-                popupCanceledListener="#{backingBeanScope.PopBackingBean.popCancelListner}"
-                popupFetchListener="#{backingBeanScope.PopBackingBean.popFetchListner}">
-        <af:panelWindow id="pw1" closeIconVisible="false" modal="true"
-                        styleClass="fuse-popup" inlineStyle="height:500.0px;">
-          <af:region value="#{bindings.COACreateTF1.regionModel}"
-                     id="r2"/>
-        </af:panelWindow>
-      </af:popup>
+      <af:group id="g2">
+        <af:popup id="p1" contentDelivery="lazyUncached"
+                  childCreation="deferred"
+                  popupCanceledListener="#{backingBeanScope.PopBackingBean.popCancelListner}"
+                  popupFetchListener="#{backingBeanScope.PopBackingBean.popFetchListner}">
+          <af:panelWindow id="pw1" closeIconVisible="false" modal="true"
+                          styleClass="fuse-popup" inlineStyle="height:500.0px;">
+            <af:region value="#{bindings.COACreateTF1.regionModel}" id="r2"/>
+          </af:panelWindow>
+        </af:popup>
+        <af:popup id="p2">
+          <af:panelWindow id="pw2" closeIconVisible="false" resize="on"
+                          title="Are you sure want to delete?">
+            <af:panelGroupLayout id="pgl4" layout="vertical" halign="center">
+              <af:spacer width="10" height="10" id="s2"/>
+              <af:panelGroupLayout id="pgl5" layout="horizontal">
+                <af:commandButton text="Yes" id="cb4"
+                                  actionListener="#{backingBeanScope.COADeleteListnerBean.commitData}"/>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:commandButton text="No" id="cb5"
+                                  actionListener="#{backingBeanScope.COADeleteListnerBean.rollbackData}"/>
+              </af:panelGroupLayout>
+              <af:spacer width="10" height="10" id="spacer1"/>
+            </af:panelGroupLayout>
+          </af:panelWindow>
+        </af:popup>
+      </af:group>
     </f:facet>
     <f:facet name="side-panel">
       <af:panelDrawer id="pd1" height="100%">
@@ -203,5 +222,6 @@
       </af:panelDrawer>
     </f:facet>
     <f:attribute name="Side-Panel" value="true"/>
+    <f:attribute name="Header-Height" value="45px"/>
   </af:pageTemplate>
 </jsp:root>

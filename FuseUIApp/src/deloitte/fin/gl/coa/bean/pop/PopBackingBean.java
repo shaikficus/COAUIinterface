@@ -45,7 +45,7 @@ public class PopBackingBean {
         System.out.println("Roll Back from Pop Cancel Event");
         //ADFContext.getCurrent().getPageFlowScope().put("forceActivate",
           //                                             "false");
-        
+        /*
           FacesContext ctx = FacesContext.getCurrentInstance();
           FacesMessage fMessage= new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Values Saved");
           ctx.addMessage(null, fMessage);
@@ -56,6 +56,7 @@ public class PopBackingBean {
           //Select the message using .auto-hide selector, wait for 3 seconds and hide it fast
           builder.append("jQuery('.coa-saveandclose').delay(3000).hide('fast');");
           erks.addScript(ctx, builder.toString());
+*/
     }
 
     public BindingContainer getBindings() {

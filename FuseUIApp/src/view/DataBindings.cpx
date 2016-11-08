@@ -26,6 +26,9 @@
     <page path="/COAPageFraments/COAFindPG.jsff" usageId="view_COAFindPGPageDef"/>
     <page path="/COAPageFraments/COACreatePG.jsff"
           usageId="view_COACreatePGPageDef"/>
+    <page path="/COAClient.jspx" usageId="view_COAClientPageDef"/>
+    <page path="/COAPageFraments/COATargetSegmentPG.jsff"
+          usageId="view_COATargetSegmentPGPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_Fuse_UI_Shell_TestPageDef"
@@ -48,6 +51,10 @@
           path="fuseuiapp.pageDefs.COAFindPGPageDef"/>
     <page id="view_COACreatePGPageDef"
           path="COAPageFraments.COACreatePGPageDef"/>
+    <page id="view_COAClientPageDef"
+          path="fuseuiapp.pageDefs.COAClientPageDef"/>
+    <page id="view_COATargetSegmentPGPageDef"
+          path="COAPageFraments.COATargetSegmentPGPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="FusionOpportunityService"

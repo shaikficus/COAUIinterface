@@ -10,4 +10,7 @@ public interface COAAM extends ApplicationModule {
                        String mappingRule, String sourceSegment,
                        String targetSegemnt, String sourceValue,
                        String targetValue);
+
+    String getCOASegments(String sourceSystem, String targetSystem,
+                          String sourceString);
 }

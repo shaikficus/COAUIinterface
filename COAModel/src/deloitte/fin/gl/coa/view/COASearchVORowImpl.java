@@ -169,13 +169,13 @@ public class COASearchVORowImpl extends ViewRowImpl {
             }
         }
         ,
-        COASegmentLOV1 {
+        EnableFlagBoolean {
             public Object get(COASearchVORowImpl obj) {
-                return obj.getCOASegmentLOV1();
+                return obj.getEnableFlagBoolean();
             }
 
             public void put(COASearchVORowImpl obj, Object value) {
-                obj.setAttributeInternal(index(), value);
+                obj.setEnableFlagBoolean((Boolean)value);
             }
         }
         ,
@@ -252,7 +252,7 @@ public class COASearchVORowImpl extends ViewRowImpl {
     public static final int RULEID2 = AttributesEnum.RuleId2.index();
     public static final int SOURCESEGMENT = AttributesEnum.SourceSegment.index();
     public static final int TARGETSEGMENT = AttributesEnum.TargetSegment.index();
-    public static final int COASEGMENTLOV1 = AttributesEnum.COASegmentLOV1.index();
+    public static final int ENABLEFLAGBOOLEAN = AttributesEnum.EnableFlagBoolean.index();
     public static final int COARULESLOV1 = AttributesEnum.COARulesLOV1.index();
     public static final int COASEGMENTDEFINITIONSVO1 = AttributesEnum.COASegmentDefinitionsVO1.index();
     public static final int COASOURCESYSTEMLOVVO1 = AttributesEnum.COASourceSystemLOVVO1.index();
@@ -451,6 +451,35 @@ public class COASearchVORowImpl extends ViewRowImpl {
     }
 
     /**
+     * Gets the attribute value for the calculated attribute EnableFlagBoolean.
+     * @return the EnableFlagBoolean
+     */
+    public Boolean getEnableFlagBoolean() {
+        //return (Boolean) getAttributeInternal(ENABLEFLAGBOOLEAN);
+        if (this.getEnabledFlag() != null && 
+            this.getEnabledFlag().equalsIgnoreCase("Y")){
+            return true;
+        }
+        return false;
+
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute EnableFlagBoolean.
+     * @param value value to set the  EnableFlagBoolean
+     */
+    public void setEnableFlagBoolean(Boolean value) {
+        
+        if (value){
+            this.setEnabledFlag("Y");
+        }
+        else{
+            this.setEnabledFlag("N");
+        }
+        setAttributeInternal(ENABLEFLAGBOOLEAN, value);
+    }
+
+    /**
      * Gets the attribute value for RULE_NAME using the alias name RuleName.
      * @return the RULE_NAME
      */
@@ -530,12 +559,6 @@ public class COASearchVORowImpl extends ViewRowImpl {
         setAttributeInternal(ENABLEDFLAG, value);
     }
 
-    /**
-     * Gets the view accessor <code>RowSet</code> COASegmentLOV1.
-     */
-    public RowSet getCOASegmentLOV1() {
-        return (RowSet)getAttributeInternal(COASEGMENTLOV1);
-    }
 
     /**
      * Gets the view accessor <code>RowSet</code> COARulesLOV1.

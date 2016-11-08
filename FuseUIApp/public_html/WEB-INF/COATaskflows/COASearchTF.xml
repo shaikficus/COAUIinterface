@@ -7,6 +7,11 @@
       <managed-bean-class id="__2">deloitte.fin.gl.coa.bean.pop.PopBackingBean</managed-bean-class>
       <managed-bean-scope id="__5">backingBean</managed-bean-scope>
     </managed-bean>
+    <managed-bean id="__8">
+      <managed-bean-name id="__6">COADeleteListnerBean</managed-bean-name>
+      <managed-bean-class id="__9">deloitte.fin.gl.coa.bean.COADeleteListnerBean</managed-bean-class>
+      <managed-bean-scope id="__7">backingBean</managed-bean-scope>
+    </managed-bean>
     <view id="COASearchPG">
       <page>/COAPageFraments/COASearchPG.jsff</page>
     </view>

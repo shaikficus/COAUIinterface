@@ -95,12 +95,10 @@
         Name="targetValue"
         Type="java.lang.String"/>
     </Method>
-  </ClientInterface>
-  <ClientInterface>
     <Method
-      Name="findCOAValues">
+      Name="getCOASegments">
       <Return
-        Type="void"/>
+        Type="java.lang.String"/>
       <Parameter
         Name="sourceSystem"
         Type="java.lang.String"/>
@@ -108,47 +106,7 @@
         Name="targetSystem"
         Type="java.lang.String"/>
       <Parameter
-        Name="mappingRule"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="sourceSegment"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="targetSegemnt"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="sourceValue"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="targetValue"
-        Type="java.lang.String"/>
-    </Method>
-  </ClientInterface>
-  <ClientInterface>
-    <Method
-      Name="findCOAValues">
-      <Return
-        Type="void"/>
-      <Parameter
-        Name="sourceSystem"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="targetSystem"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="mappingRule"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="sourceSegment"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="targetSegemnt"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="sourceValue"
-        Type="java.lang.String"/>
-      <Parameter
-        Name="targetValue"
+        Name="sourceString"
         Type="java.lang.String"/>
     </Method>
   </ClientInterface>

@@ -24,20 +24,23 @@
                          id="pt1">
           <f:attribute name="application-logo"
                        value="/images/fuse-brand-oracle-white.png"/>
-          <f:attribute name="card-1" value="Leads"/>
+          <f:attribute name="card-1" value="Segment Defnitions"/>
           <f:attribute name="icon-1"
                        value="/images/fuse-obj-nav-matte-leads.png"/>
-          <f:attribute name="card-2" value="Opportunities"/>
+          <f:attribute name="card-2" value="Mapping Rules"/>
           <f:attribute name="icon-2"
                        value="/images/fuse-obj-nav-matte-opportunities.png"/>
-          <f:attribute name="card-3" value="Customer"/>
+          <f:attribute name="card-3" value="Segment Values"/>
           <f:attribute name="icon-3"
                        value="/images/fuse-obj-nav-matte-customers.png"/>
-          <f:attribute name="card-4" value="Contact"/>
+          <f:attribute name="card-4" value="String Mappings"/>
           <f:attribute name="icon-4"
                        value="/images/fuse-obj-nav-matte-customercontact.png"/>
-          <f:attribute name="card-5" value="Custom"/>
+          <f:attribute name="card-5" value="Spread Sheet Loader"/>
           <f:attribute name="icon-5" value="/images/fuse-obj-nav-matte-watchlist.png"/>
+          <f:attribute name="card-6" value="Web Service"/>
+          <f:attribute name="icon-6"
+                       value="/images/fuse-obj-nav-matte-watchlist.png"/>
           <f:facet name="global-header-end">
             <af:menuBar id="login-menu" styleClass="global-menu-bar">
               <af:menu text="Lisa Jones" id="m1" styleClass="global-menu">
@@ -47,18 +50,22 @@
             </af:menuBar>
           </f:facet>
           <f:facet name="card-1-content">
-            <af:region value="#{bindings.leadsTF1.regionModel}" id="r2"/>
+            <af:region value="#{bindings.COASegmentDefinitionsTF1.regionModel}" id="r2"/>
           </f:facet>
           <f:facet name="card-2-content">
-            <af:region value="#{bindings.opportunitiesTF1.regionModel}"
+            <af:region value="#{bindings.COAMappingRulesTF1.regionModel}"
                        id="r1"/>
           </f:facet>
           <f:facet name="card-3-content">
-            <af:region value="#{bindings.customerTF1.regionModel}" id="r3"/>
+            <af:region value="#{bindings.COASearchTF1.regionModel}"
+                       id="region2"/>
           </f:facet>
-          <f:facet name="card-4-content"/>
+          <f:facet name="card-4-content">
+            <af:region value="#{bindings.COAStringMappingsTF1.regionModel}"
+                       id="region3"/>
+          </f:facet>
           <f:facet name="card-5-content">
-            <af:region value="#{bindings.COASearchTF1.regionModel}" id="r5"/>
+            <af:region value="#{bindings.COASpreedSheetLoaderTF1.regionModel}" id="r5"/>
           </f:facet>
           <f:facet name="announcement-content">
             <af:panelGroupLayout id="pgl2" layout="vertical"
@@ -95,6 +102,10 @@
               <af:commandLink styleClass="medium-text"
                               text="Oracle.com/UsableApps" id="outputText12"/>
             </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="card-6-content">
+            <af:region value="#{bindings.COATargetSegmentTF1.regionModel}"
+                       id="region1"/>
           </f:facet>
         </af:pageTemplate>
       </af:form>
