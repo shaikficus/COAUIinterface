@@ -55,8 +55,9 @@
                     selectionListener="#{bindings.COASearchVO1.collectionModel.makeCurrent}"
                     rowSelection="single" id="t1" styleClass="AFStrecthWidth"
                     columnStretching="multiple" contentDelivery="immediate"
-                    autoHeightRows="10" width="100%" columnBandingInterval="0"
-                    partialTriggers="::cb3 ::cb2 ::p2 ::pw2 ::cb4 ::cb5">
+                    autoHeightRows="9" width="100%" columnBandingInterval="0"
+                    partialTriggers="::cb3 ::cb2 ::p2 ::pw2 ::cb4 ::cb5"
+                    editingMode="clickToEdit">
             <af:column sortProperty="#{bindings.COASearchVO1.hints.SourceSystem.name}"
                        filterable="true" sortable="true"
                        headerText="Source System" id="c3" width="10%">
@@ -171,6 +172,13 @@
                                         shortDesc="#{bindings.COASearchVO1.hints.EnabledFlag.tooltip}"
                                         id="sbc1"/>
             </af:column>
+            <af:column id="c11" width="5%">
+              <af:commandImageLink id="cil1"
+                                   icon="/images/fuse-icon-delete.png"
+                                   action="#{backingBeanScope.COADeleteListnerBean.cb2_action}">
+                <af:showPopupBehavior popupId="::p2" triggerType="click"/>
+              </af:commandImageLink>
+            </af:column>
           </af:table>
         </af:panelGroupLayout>
       </af:group>
@@ -190,7 +198,8 @@
         </af:popup>
         <af:popup id="p2">
           <af:panelWindow id="pw2" closeIconVisible="false" resize="on"
-                          title="Are you sure want to delete?">
+                          title="Are you sure want to delete?"
+                          titleIconSource="/images/warning.png">
             <af:panelGroupLayout id="pgl4" layout="vertical" halign="center">
               <af:spacer width="10" height="10" id="s2"/>
               <af:panelGroupLayout id="pgl5" layout="horizontal">

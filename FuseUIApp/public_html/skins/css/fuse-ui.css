@@ -5265,3 +5265,14 @@ af|inputComboboxListOfValues{
 .selectContact .af_query_criterion-content{
         padding-top: 8px;
 }
+
+
+/*Custom CSS*/
+.popupFadeReset {
+  opacity: 1;
+}
+
+.popupFadeAnimate {
+  opacity: 0;
+  -webkit-transition: opacity 2s ease-in-out;
+}
