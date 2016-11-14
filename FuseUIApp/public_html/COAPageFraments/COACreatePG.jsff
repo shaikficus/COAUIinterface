@@ -100,7 +100,7 @@
         <af:panelBox text="Segment Values" id="pb3" showDisclosure="false">
           <f:facet name="toolbar"/>
           <af:panelFormLayout id="pfl1" maxColumns="2" rows="2"
-                              labelWidth="200px">
+                              labelWidth="200px" partialTriggers="sbc1">
             <af:inputText value="#{bindings.ValueId.inputValue}"
                           label="Value Id"
                           required="#{bindings.ValueId.hints.mandatory}"
